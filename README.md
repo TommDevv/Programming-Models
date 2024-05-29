@@ -46,10 +46,10 @@
 - [ ]  Sistema de Login
     - detalles
         - Archivo de persistencia de los datos de usuario (properties)
-- [x]  Modelo de usuario
+- [ ]  Modelo de usuario
     - detalles
         - Usuario, Contraseña, nickname, tipo **
-- [x]  Modelo de archivo
+- [ ]  Modelo de archivo
     - detalles
         - título, fecha de publicación (localDate class) **, autores, ISBN, editorial, disponibilidad, estado, registro.
         - Registro: libro, Creador, ultimo modificador, fecha
@@ -68,7 +68,7 @@
         - ventana de login
         - ventana de administrador
         - ventana de vista y registro de documentos
-- [x]  Adaptabilidad de los tipos de archivo
+- [ ]  Adaptabilidad de los tipos de archivo
 
 # Patrones
 
