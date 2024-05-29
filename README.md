@@ -69,3 +69,33 @@
         - ventana de administrador
         - ventana de vista y registro de documentos
 - [x]  Adaptabilidad de los tipos de archivo
+
+# Patrones
+
+### Singletton:
+
+Implementación en el sistema de login.** (Se implemento el patron con motivos de seguridad de manera que no se instancie mas de una sesion al tiempo)
+
+### Abstract Factory:
+
+Creacion de archivos segun su tipo y atributos
+
+### Prototype:
+
+copia de cada registro original
+
+### Facade:
+
+acceso de metodos modulares a través de la GUI
+
+### Adapter:
+
+conversión del formato de datos de cada uno de los documentos
+
+### Proxy:
+
+sobreescritura del estado de los libros, puente entre la interfaz y el DAO**(se modifico el modelo del proxy al no contar con herencia multiple)
+
+### DAO:
+
+Manejo de datos en persistencia (CRUD)
