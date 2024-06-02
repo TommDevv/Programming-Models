@@ -8,9 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class RegistroDAOImpl implements RegistroDAO {
 
@@ -58,10 +55,6 @@ public class RegistroDAOImpl implements RegistroDAO {
         return reg;
     }
 
-    @Override
-    public ArrayList<Registro> getAllRegistro() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     @Override
     public Registro getRegistro(String id) {
