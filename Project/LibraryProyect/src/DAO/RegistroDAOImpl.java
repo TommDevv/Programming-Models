@@ -19,7 +19,7 @@ public class RegistroDAOImpl implements RegistroDAO {
         this.entrada = null;
 
         try {
-            entrada = new FileInputStream(("user.dir") + "\\docs\\registros.properties");
+            entrada = new FileInputStream("docs\\registros.properties");
             propiedades.load(entrada);
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -48,9 +48,11 @@ public class RegistroDAOImpl implements RegistroDAO {
         if (tipo.equals("nuevo")) {
             reg = new PrimerRegistro(propiedades.getProperty("creador" + i), propiedades.getProperty("libro" + i), propiedades.getProperty("modificador" + i));
             reg.setFecha(propiedades.getProperty("fecha" + i));
+            reg.setId(propiedades.getProperty("id"+i));
         } else {
             reg = new Registro(propiedades.getProperty("libro" + i), propiedades.getProperty("modificador" + i));
             reg.setFecha(propiedades.getProperty("fecha" + i));
+            reg.setId(propiedades.getProperty("id"+i));
         }
         return reg;
     }
