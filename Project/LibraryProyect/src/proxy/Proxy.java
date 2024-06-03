@@ -11,10 +11,16 @@ public class Proxy {
     public ArrayList<Registro> registros = new ArrayList<Registro>();
     private ArchivoDAOImpl DAOarchivos = new ArchivoDAOImpl();
     private RegistroDAOImpl DAOregistros = new RegistroDAOImpl();
+    private UsuarioDAOImpl DAOusuarios = new UsuarioDAOImpl();
     
     public Proxy(){
         int cantreg = DAOregistros.obtenerCantidadRegistros();
         int cantarc = DAOarchivos.obtenerCantidadArchivos();
+        int cantusr = DAOusuarios.obtenerCantidadUsuarios();
+        
+        for(int i =1; i<= cantusr; i++){
+            usuarios.add(DAOusuarios.getUsuario(i));
+        }
         for (int i = 1; i <= cantreg;i++){
             registros.add(DAOregistros.leerPropiedades(i));
         }
@@ -141,6 +147,9 @@ public class Proxy {
         for(Archivo a : archivos){
             DAOarchivos.addArchivo(a);
         }
+        for(Usuario u : usuarios){
+            DAOusuarios.addUsuario(u);
+        }
         DAOregistros.limpiarPropiedades();
         for(Registro r : registros){
             String tipo = r.getClass().getSimpleName();
@@ -150,5 +159,9 @@ public class Proxy {
                 DAOregistros.addRegistro(r);
             }
         }
+    
+        DAOarchivos.almacenarPropiedades();
+        DAOusuarios.saveProperties();
+        DAOregistros.almacenarPropiedades();
     }
 }

@@ -90,6 +90,18 @@ public class Usuario {
 	public void setNumeroTelefono(String numeroTelefono) {
 		this.numeroTelefono = numeroTelefono;
 	}
+	
+	public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", usuario='" + username + '\'' +
+                ", contraseña='" + password + '\'' +
+                ", nombre='" + nombre + '\''+
+                ", email='" + correoElectronico + '\'' +
+                ", direccion='" + direccionFisica + '\'' +
+                ", phoneNumber='" + numeroTelefono + '\'' +
+                '}';
+    }
     
     
 
