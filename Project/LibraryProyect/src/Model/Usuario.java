@@ -2,39 +2,94 @@ package Model;
 
 public class Usuario {
 
+	private int id;
+    private String username;
+    private String password;
     private String nombre;
-    private String contraseña;
-    private boolean tipo;
+    private String correoElectronico;
+    private String direccionFisica;
+    private String numeroTelefono;
 
-    public Usuario(String nombre, String contraseña, boolean tipo) {
+
+    public Usuario(int id, String username, String password, String nombre, String correoElectronico, String direccionFisica, String numeroTelefono) {
+    	this.id = id;
+        this.username = username;
+        this.password = password;
         this.nombre = nombre;
-        this.contraseña = contraseña;
-        this.tipo = tipo;
+        this.correoElectronico = correoElectronico;
+        this.direccionFisica = direccionFisica;
+        this.numeroTelefono = numeroTelefono;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public String getContraseña() {
-        return contraseña;
-    }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public boolean isTipo() {
-        return tipo;
-    }
 
-    public void setTipo(boolean tipo) {
-        this.tipo = tipo;
-    }
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public String getCorreoElectronico() {
+		return correoElectronico;
+	}
+
+
+	public void setCorreoElectronico(String correoElectronico) {
+		this.correoElectronico = correoElectronico;
+	}
+
+
+	public String getDireccionFisica() {
+		return direccionFisica;
+	}
+
+
+	public void setDireccionFisica(String direccionFisica) {
+		this.direccionFisica = direccionFisica;
+	}
+
+
+	public String getNumeroTelefono() {
+		return numeroTelefono;
+	}
+
+
+	public void setNumeroTelefono(String numeroTelefono) {
+		this.numeroTelefono = numeroTelefono;
+	}
     
     
 

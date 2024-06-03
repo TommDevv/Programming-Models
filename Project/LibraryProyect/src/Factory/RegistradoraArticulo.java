@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class RegistradoraArticulo extends Registradora {
 
     @Override
-    public Archivo crearArchivo(String titulo, LocalDate fechaPublicacion, String autor, String editorial, boolean disponible, boolean alta, PrimerRegistro registro, String creador) {
+    public Archivo crearArchivo(String titulo, String fechaPublicacion, String autor, String editorial, boolean disponible, boolean alta, PrimerRegistro registro, String creador) {
         return new SSNAdapter("", titulo, fechaPublicacion, autor, editorial, super.generarRegistro(creador, titulo, creador));
     }
  

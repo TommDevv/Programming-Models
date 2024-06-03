@@ -13,9 +13,9 @@ public abstract class Archivo {
     private String ISBN;
     private PrimerRegistro registro;
 
-    public Archivo(String titulo, LocalDate fechaPublicacion, String autor, String editorial, PrimerRegistro registro) {
+    public Archivo(String titulo, String fechaPublicacion, String autor, String editorial, PrimerRegistro registro) {
         this.titulo = titulo;
-        this.fechaPublicacion = fechaPublicacion;
+        this.fechaPublicacion = LocalDate.parse(fechaPublicacion);
         this.autor = autor;
         this.editorial = editorial;
         this.disponible = true;

@@ -9,5 +9,5 @@ public abstract class Registradora {
         return new PrimerRegistro(creador, libro, modificador);
     }
     
-    public abstract Archivo crearArchivo(String titulo, LocalDate fechaPublicacion, String autor, String editorial, boolean disponible, boolean alta, PrimerRegistro registro, String creador);
+    public abstract Archivo crearArchivo(String titulo, String fechaPublicacion, String autor, String editorial, boolean disponible, boolean alta, PrimerRegistro registro, String creador);
 }

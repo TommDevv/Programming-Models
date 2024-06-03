@@ -127,7 +127,7 @@ public class RegistroDAOImpl implements RegistroDAO {
     @Override
     public void almacenarPropiedades(){
         try {
-            propiedades.store(new FileOutputStream(("user.dir") + "\\docs\\registros.properties"), null);
+            propiedades.store(new FileOutputStream("docs\\registros.properties"), null);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
