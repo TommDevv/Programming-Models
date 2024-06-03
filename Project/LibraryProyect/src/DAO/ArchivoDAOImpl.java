@@ -35,7 +35,11 @@ public class ArchivoDAOImpl implements ArchivoDAO {
             }
         }
     }
-
+    
+    public void limpiarPropiedades(){
+        this.propiedades.clear();
+    }
+    
     @Override
     public int obtenerCantidadArchivos() {
         int cantreg;

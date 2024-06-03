@@ -34,6 +34,10 @@ public class RegistroDAOImpl implements RegistroDAO {
         }
     }
 
+    public void limpiarPropiedades(){
+        this.propiedades.clear();
+    }    
+    
     @Override
     public int obtenerCantidadRegistros() {
         int cantreg;
