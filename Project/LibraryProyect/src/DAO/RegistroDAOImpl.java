@@ -78,7 +78,7 @@ public class RegistroDAOImpl implements RegistroDAO {
     @Override
     public void addRegistro(Registro reg) {
         int iter = (this.obtenerCantidadRegistros()) + 1;
-        propiedades.setProperty("tipo" + iter, "nuevo");
+        propiedades.setProperty("tipo" + iter, "no es nuevo");
         propiedades.setProperty("id" + iter, reg.getId());
         propiedades.setProperty("libro" + iter, reg.getLibro());
         propiedades.setProperty("modificador" + iter, reg.getModificador());

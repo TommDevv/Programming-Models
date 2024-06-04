@@ -53,6 +53,7 @@ public class Proxy {
         return arc;
     }
     
+    
     public Registro getRegistro(String id){
         Registro reg = null;
         for(Registro r : registros){

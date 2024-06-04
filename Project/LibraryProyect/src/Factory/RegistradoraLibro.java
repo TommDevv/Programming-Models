@@ -7,7 +7,7 @@ public class RegistradoraLibro extends Registradora {
 
     @Override
     public Archivo crearArchivo(String titulo, String fechaPublicacion, String autor, String editorial, boolean disponible, boolean alta, PrimerRegistro registro, String creador) {
-        return new Libro(0, titulo, fechaPublicacion, autor, editorial, super.generarRegistro(creador, titulo, creador));
+        return new Libro(titulo, fechaPublicacion, autor, editorial, super.generarRegistro(creador, titulo, creador),0);
         
     }
  

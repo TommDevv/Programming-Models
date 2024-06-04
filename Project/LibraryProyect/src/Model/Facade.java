@@ -8,6 +8,8 @@ package Model;
  *
  * @author Janus
  */
+import DAO.ArchivoDAOImpl;
+import DAO.RegistroDAOImpl;
 import java.util.ArrayList;
 
 import Model.*;
@@ -15,17 +17,21 @@ import proxy.Proxy;
 import java.util.ArrayList;
 
 public class Facade {
+    private ArchivoDAOImpl archivo;
+    private RegistroDAOImpl registro;
     private Proxy proxy;
     private Login login;
 
     public Facade() {
         this.proxy = new Proxy();
         this.login= new Login();
+        this.archivo = new ArchivoDAOImpl();
+        this.registro = new RegistroDAOImpl();
         System.out.println("Proxy initialized: " + (this.proxy != null));
         System.out.println("Login initialized: " + (this.login != null));
     }
 
-    public ArrayList<Archivo> getAllArchivos() {
+    public ArrayList getAllArchivos() {
         return proxy.getAllArchivos();
     }
     
@@ -52,11 +58,17 @@ public class Facade {
     }
 
     public void addArchivo(Archivo arc) {
-        proxy.addArchivo(arc);
+        
+        archivo.addArchivo(arc);
+        
     }
 
     public void addRegistro(Registro reg) {
-        proxy.addRegistro(reg);
+        registro.addRegistro(reg);
+    }
+    
+    public void addPrimerRegistro(PrimerRegistro reg) {
+        registro.addRegistro(reg);
     }
 
     public void addUsuario(Usuario usr) {
@@ -91,8 +103,8 @@ public class Facade {
         proxy.almacenarDatos();
     }
     
-    public void registrarUsuario(int id, String username, String password, String nombre, String correoElectronico, String direccionFisica, String numeroTelefono){
-        login.registrarUsuario(id, username, password, nombre, correoElectronico, direccionFisica, numeroTelefono);
+    public void registrarUsuario(Usuario user){
+        login.registrarUsuario(user);
 }
     
     public boolean validarUsuario(String user, String contraseña){
@@ -103,4 +115,6 @@ public class Facade {
     public int asignarId(){
         return login.asignarId();
     }
+    
+    
 }

@@ -5,6 +5,7 @@
 package View;
 
 import Model.Facade;
+import Model.Usuario;
 import javax.swing.JOptionPane;
 
 /**
@@ -133,6 +134,7 @@ public class Registrarse extends javax.swing.JFrame {
 
     private void btnRegistrarseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarseMouseClicked
         try{
+            
         int id = facade.asignarId();
         String nombre= txtNombre.getText();
         String usuario = txtNombre.getText();
@@ -141,9 +143,11 @@ public class Registrarse extends javax.swing.JFrame {
         String telefono= txtTelefono.getText();
         String contraseña = txtPassword.getText();
         
-        facade.registrarUsuario(id,usuario, contraseña, nombre, correo, direccion, telefono);
+        Usuario user = new Usuario(id,usuario,contraseña,nombre,correo,direccion,telefono);
+        
+        facade.registrarUsuario(user);
             
-        GestorDocumentos newframe = new GestorDocumentos();
+        Login newframe = new Login();
 
         newframe.setVisible(true);
 

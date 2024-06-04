@@ -14,7 +14,7 @@ public class Registro implements Cloneable{
     public Registro(String libro, String modificador) {
         this.libro = libro;
         this.modificador = modificador;
-        //this.fecha = LocalDate.now();
+        this.fecha = LocalDate.now();
         this.id = String.valueOf((int)((Math.random())*100000)%100000);
     }
 

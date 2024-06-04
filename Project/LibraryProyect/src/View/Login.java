@@ -111,7 +111,7 @@ public class Login extends javax.swing.JFrame {
         boolean valido = facade.validarUsuario(usuario, contraseña);
         
         if(valido){
-            GestorDocumentos newframe = new GestorDocumentos();
+            GestorDocumentos newframe = new GestorDocumentos(usuario);
 
             newframe.setVisible(true);
 
@@ -122,7 +122,7 @@ public class Login extends javax.swing.JFrame {
         }
         }catch (Exception e) {
             // Muestra el error en una ventana emergente
-            JOptionPane.showMessageDialog(null, "Se produjo un error: " + e.getMessage(), "No se pudo registrar el usuario", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Se produjo un error: " + e.getMessage(), "No se pudo logear", JOptionPane.ERROR_MESSAGE);
         }finally {
             // Este bloque siempre se ejecuta
             

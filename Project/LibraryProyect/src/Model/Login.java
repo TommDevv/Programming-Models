@@ -16,11 +16,14 @@ public class Login {
 
     private static Login instance;
     private Proxy proxy;
+    private UsuarioDAOImpl x;
     
    
 
     public Login(){
-
+        this.proxy = new Proxy();
+        this.x= new UsuarioDAOImpl();
+        
     }
     public Login getInstance(){
         if(instance == null){
@@ -30,21 +33,30 @@ public class Login {
     }
 
     
-     public void registrarUsuario(int id, String username, String password, String nombre, String correoElectronico, String direccionFisica, String numeroTelefono){
-        Usuario usuario = new Usuario(id,username, password, nombre, correoElectronico, direccionFisica, numeroTelefono);
-        boolean valido=instance.validarUsuarioExistente(usuario);
+     public void registrarUsuario(Usuario user){
+        ArrayList<Usuario> usuarios = proxy.getAllUsuarios();
+        boolean valido=false;
+        for(Usuario usuario: usuarios ) {
+            if(usuario.getUsername().equals(user.getUsername())) {
+                    valido= false;
+                }else{
+                    valido=true;
+            }
+        }
+        
         if(valido){
-            proxy.addUsuario(usuario);
+            x.addUsuario(user);
         }else{
             System.out.print("pailas compae ya existe ese user");
         }
     }
     public boolean validarUsuario(String user, String contraseña){
         ArrayList<Usuario> usuarios = proxy.getAllUsuarios();
+        
         for(Usuario usuario: usuarios ) {
             if(usuario.getUsername().equals(user)) {
-                if(usuario.getPassword().equals(contraseña)) {
-                    return true;
+               if(usuario.getPassword().equals(contraseña)) {
+                   return true;
                 }else {
                     return false;
                 }
@@ -54,18 +66,7 @@ public class Login {
         
     }
     
-    public boolean validarUsuarioExistente(Usuario user){
-        ArrayList<Usuario> usuarios = proxy.getAllUsuarios();
-        for(Usuario usuario: usuarios ) {
-            if(usuario.getUsername().equals(user.getUsername())) {
-                    return true;
-                }else{
-                    return false;
-            }
-        }
-        return false;
-        
-    }
+    
    
     public int asignarId() {
     ArrayList<Usuario> usuarios = proxy.getAllUsuarios();

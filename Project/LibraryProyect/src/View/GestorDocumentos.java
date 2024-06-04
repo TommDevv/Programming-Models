@@ -4,18 +4,30 @@
  */
 package View;
 
+import Model.Facade;
+import Model.Libro;
+import Model.PrimerRegistro;
+import Model.Registro;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nous_
  */
 public class GestorDocumentos extends javax.swing.JFrame {
-
+    String usuario;
+     private Facade facade;
     /**
      * Creates new form GestorDocumentos
      */
-    public GestorDocumentos() {
+    public GestorDocumentos(String user) {
+        usuario = user;
+        this.facade= new Facade();
         initComponents();
+        facade = new Facade();
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,22 +43,19 @@ public class GestorDocumentos extends javax.swing.JFrame {
         txtFechaPublicacion = new javax.swing.JTextField();
         txtISBNSNN = new javax.swing.JTextField();
         txtTitulo = new javax.swing.JTextField();
-        txtEstadoDocumento = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtPonencias = new javax.swing.JTextArea();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtAutores = new javax.swing.JTextArea();
-        comboboxFiltros = new javax.swing.JComboBox<>();
         btnConsultarTablaMods = new javax.swing.JButton();
         comboboxDocumentos = new javax.swing.JComboBox<>();
         btnCerrarSesion = new javax.swing.JButton();
         btnDevolverDocumento = new javax.swing.JButton();
         btnReservarDocumento = new javax.swing.JButton();
         btnConsultarDoc = new javax.swing.JButton();
-        btnAplicarFiltro = new javax.swing.JButton();
         btnCrearDocumento = new javax.swing.JButton();
         btnModificarDocumento = new javax.swing.JButton();
         btnEliminarDocumento = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        txtEstadoDocumento1 = new javax.swing.JTextField();
+        primerRegistro = new javax.swing.JComboBox<>();
+        Autor = new javax.swing.JTextField();
         LabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,7 +69,7 @@ public class GestorDocumentos extends javax.swing.JFrame {
                 txtEditorialActionPerformed(evt);
             }
         });
-        getContentPane().add(txtEditorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 210, -1));
+        getContentPane().add(txtEditorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 210, -1));
 
         txtTotalPaginas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTotalPaginas.setText("Total de Paginas");
@@ -69,25 +78,25 @@ public class GestorDocumentos extends javax.swing.JFrame {
                 txtTotalPaginasActionPerformed(evt);
             }
         });
-        getContentPane().add(txtTotalPaginas, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 210, -1));
+        getContentPane().add(txtTotalPaginas, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 210, -1));
 
         txtFechaPublicacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtFechaPublicacion.setText("ISBN / SNN");
+        txtFechaPublicacion.setText("Fecha de publicacion");
         txtFechaPublicacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFechaPublicacionActionPerformed(evt);
             }
         });
-        getContentPane().add(txtFechaPublicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 210, -1));
+        getContentPane().add(txtFechaPublicacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 210, -1));
 
         txtISBNSNN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtISBNSNN.setText("Fecha de Publicacion");
+        txtISBNSNN.setText("ISBN/SNN");
         txtISBNSNN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtISBNSNNActionPerformed(evt);
             }
         });
-        getContentPane().add(txtISBNSNN, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 210, -1));
+        getContentPane().add(txtISBNSNN, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 210, -1));
 
         txtTitulo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTitulo.setText("Titulo del Documento");
@@ -96,41 +105,15 @@ public class GestorDocumentos extends javax.swing.JFrame {
                 txtTituloActionPerformed(evt);
             }
         });
-        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 210, -1));
-
-        txtEstadoDocumento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtEstadoDocumento.setText("Estado de Documento");
-        txtEstadoDocumento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEstadoDocumentoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtEstadoDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 210, -1));
-
-        txtPonencias.setColumns(20);
-        txtPonencias.setRows(5);
-        txtPonencias.setText("Ponencias");
-        jScrollPane2.setViewportView(txtPonencias);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 250, 310, 240));
-
-        txtAutores.setColumns(20);
-        txtAutores.setRows(5);
-        txtAutores.setText("Autores");
-        jScrollPane1.setViewportView(txtAutores);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 310, 230));
-
-        comboboxFiltros.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(comboboxFiltros, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 180, 20));
+        getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 210, -1));
 
         btnConsultarTablaMods.setBackground(new java.awt.Color(204, 204, 255));
         btnConsultarTablaMods.setText("Consultar Modificaciones");
         btnConsultarTablaMods.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(btnConsultarTablaMods, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 180, -1));
 
-        comboboxDocumentos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(comboboxDocumentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 180, 20));
+        comboboxDocumentos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "libro", "ponencia", "articulo cientifico" }));
+        getContentPane().add(comboboxDocumentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 210, -1));
 
         btnCerrarSesion.setBackground(new java.awt.Color(204, 204, 255));
         btnCerrarSesion.setText("Cerrar Sesion");
@@ -140,22 +123,17 @@ public class GestorDocumentos extends javax.swing.JFrame {
         btnDevolverDocumento.setBackground(new java.awt.Color(204, 204, 255));
         btnDevolverDocumento.setText("Devolucion");
         btnDevolverDocumento.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(btnDevolverDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 180, -1));
+        getContentPane().add(btnDevolverDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 180, -1));
 
         btnReservarDocumento.setBackground(new java.awt.Color(204, 204, 255));
         btnReservarDocumento.setText("Reservar Online");
         btnReservarDocumento.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(btnReservarDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 180, -1));
+        getContentPane().add(btnReservarDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 180, -1));
 
         btnConsultarDoc.setBackground(new java.awt.Color(204, 204, 255));
         btnConsultarDoc.setText("Consultar Documento");
         btnConsultarDoc.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(btnConsultarDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 180, -1));
-
-        btnAplicarFiltro.setBackground(new java.awt.Color(204, 204, 255));
-        btnAplicarFiltro.setText("Aplicar Filtro");
-        btnAplicarFiltro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(btnAplicarFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 180, -1));
+        getContentPane().add(btnConsultarDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 180, -1));
 
         btnCrearDocumento.setBackground(new java.awt.Color(204, 204, 255));
         btnCrearDocumento.setText("Crear Documento");
@@ -163,6 +141,11 @@ public class GestorDocumentos extends javax.swing.JFrame {
         btnCrearDocumento.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCrearDocumentoMouseClicked(evt);
+            }
+        });
+        btnCrearDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearDocumentoActionPerformed(evt);
             }
         });
         getContentPane().add(btnCrearDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 180, -1));
@@ -176,6 +159,34 @@ public class GestorDocumentos extends javax.swing.JFrame {
         btnEliminarDocumento.setText("Eliminar Documento");
         btnEliminarDocumento.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(btnEliminarDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 180, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 320, 0));
+
+        txtEstadoDocumento1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtEstadoDocumento1.setText("Nombre del congreso");
+        txtEstadoDocumento1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEstadoDocumento1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtEstadoDocumento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 210, -1));
+
+        primerRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
+        primerRegistro.setToolTipText("Primer registro?");
+        primerRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                primerRegistroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(primerRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 210, -1));
+
+        Autor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Autor.setText("Autor");
+        Autor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AutorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Autor, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 210, -1));
 
         LabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/paper.png"))); // NOI18N
         getContentPane().add(LabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -186,10 +197,6 @@ public class GestorDocumentos extends javax.swing.JFrame {
     private void txtTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTituloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTituloActionPerformed
-
-    private void txtFechaPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaPublicacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaPublicacionActionPerformed
 
     private void txtISBNSNNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtISBNSNNActionPerformed
         // TODO add your handling code here:
@@ -203,52 +210,70 @@ public class GestorDocumentos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEditorialActionPerformed
 
-    private void txtEstadoDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoDocumentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEstadoDocumentoActionPerformed
-
     private void btnCrearDocumentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCrearDocumentoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCrearDocumentoMouseClicked
 
+    private void txtEstadoDocumento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoDocumento1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEstadoDocumento1ActionPerformed
+
+    private void primerRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_primerRegistroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_primerRegistroActionPerformed
+
+    private void btnCrearDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearDocumentoActionPerformed
+      String tipo = comboboxDocumentos.getSelectedItem().toString();
+      String PrimerRegistro = primerRegistro.getSelectedItem().toString();
+      try{
+      if(tipo.equals("libro")){
+          int paginas = Integer.valueOf(txtTotalPaginas.getText());
+          String titulo= txtTitulo.getText();
+          String fechaPublicacion= txtFechaPublicacion.getText();
+          String autor = Autor.getText();
+          String editorial = txtEditorial.getText();
+          if(PrimerRegistro.equals("Si")){
+              
+              PrimerRegistro primer = new PrimerRegistro(usuario, titulo, usuario);
+              Libro libro = new Libro(titulo, fechaPublicacion, autor, editorial, primer,paginas);
+              facade.addArchivo(libro);
+              facade.addPrimerRegistro(primer);
+              
+          }else{
+              PrimerRegistro primer = new PrimerRegistro(usuario, titulo, usuario);
+              
+              Libro libro = new Libro(titulo, fechaPublicacion, autor, editorial, primer,paginas);
+              facade.addArchivo(libro);
+              facade.addRegistro(primer);
+          }
+      }
+          
+      }catch (Exception e) {
+            // Muestra el error en una ventana emergente
+            JOptionPane.showMessageDialog(null, "Se produjo un error: " + e.getMessage(), "No se pudo registrar el archivo", JOptionPane.ERROR_MESSAGE);
+        }finally {
+            // Este bloque siempre se ejecuta
+            
+        }
+    
+    }//GEN-LAST:event_btnCrearDocumentoActionPerformed
+
+    private void AutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AutorActionPerformed
+
+    private void txtFechaPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaPublicacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaPublicacionActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GestorDocumentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GestorDocumentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GestorDocumentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GestorDocumentos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GestorDocumentos().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTextField Autor;
     public javax.swing.JLabel LabelFondo;
-    public javax.swing.JButton btnAplicarFiltro;
     public javax.swing.JButton btnCerrarSesion;
     public javax.swing.JButton btnConsultarDoc;
     public javax.swing.JButton btnConsultarTablaMods;
@@ -258,15 +283,12 @@ public class GestorDocumentos extends javax.swing.JFrame {
     public javax.swing.JButton btnModificarDocumento;
     public javax.swing.JButton btnReservarDocumento;
     public javax.swing.JComboBox<String> comboboxDocumentos;
-    public javax.swing.JComboBox<String> comboboxFiltros;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JTextArea txtAutores;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> primerRegistro;
     public javax.swing.JTextField txtEditorial;
-    public javax.swing.JTextField txtEstadoDocumento;
+    public javax.swing.JTextField txtEstadoDocumento1;
     public javax.swing.JTextField txtFechaPublicacion;
     public javax.swing.JTextField txtISBNSNN;
-    public javax.swing.JTextArea txtPonencias;
     public javax.swing.JTextField txtTitulo;
     public javax.swing.JTextField txtTotalPaginas;
     // End of variables declaration//GEN-END:variables
