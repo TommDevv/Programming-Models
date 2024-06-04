@@ -67,7 +67,6 @@ public class GestorDocumentos extends javax.swing.JFrame {
         btnConsultarDoc = new javax.swing.JButton();
         btnCrearDocumento = new javax.swing.JButton();
         btnModificarDocumento = new javax.swing.JButton();
-        btnEliminarDocumento = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         congreso = new javax.swing.JTextField();
         primerRegistro = new javax.swing.JComboBox<>();
@@ -180,16 +179,6 @@ public class GestorDocumentos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnModificarDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 180, -1));
-
-        btnEliminarDocumento.setBackground(new java.awt.Color(204, 204, 255));
-        btnEliminarDocumento.setText("Eliminar Documento");
-        btnEliminarDocumento.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnEliminarDocumento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarDocumentoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnEliminarDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 180, -1));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 320, 0));
 
         congreso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -272,8 +261,9 @@ public class GestorDocumentos extends javax.swing.JFrame {
               facade.addPrimerRegistro(primer);
               
           }else{
-               Registro registro = new Registro(titulo, usuario);
-              Archivo archivo= regislibro.crearArchivo(titulo, fechaPublicacion, autor, editorial, true, true, (PrimerRegistro) registro, autor);
+               PrimerRegistro primer = new PrimerRegistro(usuario, titulo, usuario);
+               Registro registro = (Registro) primer.clone();
+              Archivo archivo= regislibro.crearArchivo(titulo, fechaPublicacion, autor, editorial, true, true, primer, autor);
               regislibro.configPaginas(paginas, (Libro) archivo);
               facade.addArchivo(archivo);
               facade.addRegistro(registro);         
@@ -294,8 +284,9 @@ public class GestorDocumentos extends javax.swing.JFrame {
               facade.addPrimerRegistro(primer);
               
           }else{
-                Registro registro = new Registro(titulo, usuario);
-              Archivo archivo= regispon.crearArchivo(titulo, fechaPublicacion, autor, editorial, true, true, (PrimerRegistro) registro, autor);
+                PrimerRegistro primer = new PrimerRegistro(usuario, titulo, usuario);
+               Registro registro = (Registro) primer.clone();
+              Archivo archivo= regispon.crearArchivo(titulo, fechaPublicacion, autor, editorial, true, true, primer, autor);
               regispon.configCongreso(Congreso, (Ponencia) archivo);
               facade.addArchivo(archivo);
               facade.addRegistro(registro);         
@@ -319,9 +310,10 @@ public class GestorDocumentos extends javax.swing.JFrame {
               facade.addPrimerRegistro(primer);
               
           }else{
-              Registro registro = new Registro(titulo, usuario);
+               PrimerRegistro primer = new PrimerRegistro(usuario, titulo, usuario);
+               Registro registro = (Registro) primer.clone();
               SSNAdapter adapter = new SSNAdapter(SSN, titulo, fechaPublicacion, autor, editorial, (PrimerRegistro) registro);
-              Archivo archivo= regisart.crearArchivo(titulo, fechaPublicacion, autor, editorial, true, true, (PrimerRegistro) registro, autor);
+              Archivo archivo= regisart.crearArchivo(titulo, fechaPublicacion, autor, editorial, true, true,primer, autor);
               regisart.configSSN(SSN, adapter);
               facade.addArchivo(archivo);
               facade.addRegistro(registro);   
@@ -410,24 +402,6 @@ public class GestorDocumentos extends javax.swing.JFrame {
     
     }//GEN-LAST:event_btnModificarDocumentoActionPerformed
 
-    private void btnEliminarDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDocumentoActionPerformed
-        String PrimerRegistro = primerRegistro.getSelectedItem().toString();
-    String titulo= txtTitulo.getText();
-    String tipo = comboboxDocumentos.getSelectedItem().toString();
-    
-      try{
-      facade.deleteArchivo(titulo);
-      }catch (Exception e) {
-            // Muestra el error en una ventana emergente
-            JOptionPane.showMessageDialog(null, "Se produjo un error: " + e.getMessage(), "No se pudo registrar el archivo", JOptionPane.ERROR_MESSAGE);
-        }finally {
-            // Este bloque siempre se ejecuta
-            
-        
-      
-      }
-    }//GEN-LAST:event_btnEliminarDocumentoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -441,7 +415,6 @@ public class GestorDocumentos extends javax.swing.JFrame {
     public javax.swing.JButton btnConsultarTablaMods;
     public javax.swing.JButton btnCrearDocumento;
     public javax.swing.JButton btnDevolverDocumento;
-    public javax.swing.JButton btnEliminarDocumento;
     public javax.swing.JButton btnModificarDocumento;
     public javax.swing.JButton btnReservarDocumento;
     public javax.swing.JComboBox<String> comboboxDocumentos;

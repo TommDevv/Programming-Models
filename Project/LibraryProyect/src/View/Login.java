@@ -105,12 +105,19 @@ public class Login extends javax.swing.JFrame {
 
     private void btnIniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarSesionMouseClicked
         try{
+           
         String usuario = txtUsuario.getText();
         String contraseña = txtContraseña.getText();
+        if(usuario.equals("admin") && contraseña.equals("admin")){
+            Admin newframe = new Admin();
+
+            newframe.setVisible(true);
+
+            this.dispose();
+        }else{
+            boolean valido = facade.validarUsuario(usuario, contraseña);
         
-        boolean valido = facade.validarUsuario(usuario, contraseña);
-        
-        if(valido){
+            if(valido){
             GestorDocumentos newframe = new GestorDocumentos(usuario);
 
             newframe.setVisible(true);
@@ -120,6 +127,7 @@ public class Login extends javax.swing.JFrame {
         }else{
             System.out.print("paila");
         }
+        }
         }catch (Exception e) {
             // Muestra el error en una ventana emergente
             JOptionPane.showMessageDialog(null, "Se produjo un error: " + e.getMessage(), "No se pudo logear", JOptionPane.ERROR_MESSAGE);
@@ -127,6 +135,8 @@ public class Login extends javax.swing.JFrame {
             // Este bloque siempre se ejecuta
             
         }
+        
+    
     }//GEN-LAST:event_btnIniciarSesionMouseClicked
 
     /**

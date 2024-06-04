@@ -36,8 +36,8 @@ public class Facade {
     
     
     
-    public ArrayList getAllRegistros() {
-        return proxy.getAllRegistros();
+    public Registro getAllRegistros() {
+        return registro.leerPropiedades(1);
     }
 
     public ArrayList getAllUsuarios() {

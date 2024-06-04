@@ -8,20 +8,23 @@
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/libraryproyect/LibraryProyect.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Model/Archivo.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Model/PrimerRegistro.java</file>
+            <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Factory/RegistradoraPonencia.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Model/Libro.java</file>
+            <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Model/Ponencia.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/DAO/UsuarioDAOImpl.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Factory/RegistradoraLibro.java</file>
+            <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/View/RecuperarContraseña.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/View/ValidarDatos.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/DAO/ArchivoDAOImpl.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Factory/RegistradoraArticulo.java</file>
-            <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/View/Login.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/DAO/RegistroDAOImpl.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/proxy/Proxy.java</file>
+            <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Model/SSNAdapter.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Model/Registro.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Model/Facade.java</file>
-            <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Model/Login.java</file>
+            <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/DAO/RegistroDAO.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Model/Articulo.java</file>
-            <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/View/GestorDocumentos.java</file>
+            <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Model/Usuario.java</file>
         </group>
     </open-files>
 </project-private>
