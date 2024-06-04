@@ -27,8 +27,7 @@ public class Facade {
         this.login= new Login();
         this.archivo = new ArchivoDAOImpl();
         this.registro = new RegistroDAOImpl();
-        System.out.println("Proxy initialized: " + (this.proxy != null));
-        System.out.println("Login initialized: " + (this.login != null));
+        
     }
 
     public ArrayList getAllArchivos() {
@@ -60,15 +59,18 @@ public class Facade {
     public void addArchivo(Archivo arc) {
         
         archivo.addArchivo(arc);
+        archivo.almacenarPropiedades();
         
     }
 
     public void addRegistro(Registro reg) {
         registro.addRegistro(reg);
+        registro.almacenarPropiedades();
     }
     
     public void addPrimerRegistro(PrimerRegistro reg) {
         registro.addRegistro(reg);
+        registro.almacenarPropiedades();
     }
 
     public void addUsuario(Usuario usr) {
@@ -76,7 +78,8 @@ public class Facade {
     }
 
     public void deleteArchivo(String titulo) {
-        proxy.deleteArchivo(titulo);
+        archivo.deleteRegistro(titulo);
+        archivo.almacenarPropiedades();
     }
 
     public void deleteRegistro(String id) {
@@ -88,11 +91,13 @@ public class Facade {
     }
 
     public void updateArchivo(Archivo arc) {
-        proxy.updateArchivo(arc);
+        archivo.updateArchivo(arc);
+        archivo.almacenarPropiedades();
     }
 
     public void updateRegistro(Registro reg) {
-        proxy.updateRegistro(reg);
+        registro.updateRegistro(reg);
+        registro.almacenarPropiedades();
     }
 
     public void updateUsuario(Usuario usr) {

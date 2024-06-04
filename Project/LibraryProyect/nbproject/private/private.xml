@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/DAO/ArchivoDAO.java</file>
+            <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Factory/Registradora.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/libraryproyect/LibraryProyect.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Model/Archivo.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Model/PrimerRegistro.java</file>
@@ -12,6 +13,7 @@
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Factory/RegistradoraLibro.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/View/ValidarDatos.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/DAO/ArchivoDAOImpl.java</file>
+            <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/Factory/RegistradoraArticulo.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/View/Login.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/DAO/RegistroDAOImpl.java</file>
             <file>file:/C:/Users/Janus/Documents/GitHub/Programming-Models/Project/LibraryProyect/src/proxy/Proxy.java</file>

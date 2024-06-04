@@ -4,10 +4,17 @@
  */
 package View;
 
+import Factory.RegistradoraArticulo;
+import Factory.RegistradoraLibro;
+import Factory.RegistradoraPonencia;
+import Model.Archivo;
+import Model.Articulo;
 import Model.Facade;
 import Model.Libro;
+import Model.Ponencia;
 import Model.PrimerRegistro;
 import Model.Registro;
+import Model.SSNAdapter;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,14 +24,23 @@ import javax.swing.JOptionPane;
 public class GestorDocumentos extends javax.swing.JFrame {
     String usuario;
      private Facade facade;
+     private RegistradoraLibro regislibro;
+     private RegistradoraPonencia regispon;
+     private RegistradoraArticulo regisart;
     /**
      * Creates new form GestorDocumentos
      */
     public GestorDocumentos(String user) {
         usuario = user;
         this.facade= new Facade();
+        this.regislibro = new RegistradoraLibro();
+        this.regispon = new RegistradoraPonencia();
+        this.regisart = new RegistradoraArticulo();
         initComponents();
         facade = new Facade();
+        regislibro = new RegistradoraLibro();
+        regispon= new RegistradoraPonencia();
+        regisart = new RegistradoraArticulo();
     }
 
     
@@ -53,7 +69,7 @@ public class GestorDocumentos extends javax.swing.JFrame {
         btnModificarDocumento = new javax.swing.JButton();
         btnEliminarDocumento = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        txtEstadoDocumento1 = new javax.swing.JTextField();
+        congreso = new javax.swing.JTextField();
         primerRegistro = new javax.swing.JComboBox<>();
         Autor = new javax.swing.JTextField();
         LabelFondo = new javax.swing.JLabel();
@@ -153,24 +169,39 @@ public class GestorDocumentos extends javax.swing.JFrame {
         btnModificarDocumento.setBackground(new java.awt.Color(204, 204, 255));
         btnModificarDocumento.setText("Modificar Documento");
         btnModificarDocumento.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnModificarDocumento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModificarDocumentoMouseClicked(evt);
+            }
+        });
+        btnModificarDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarDocumentoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnModificarDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 180, -1));
 
         btnEliminarDocumento.setBackground(new java.awt.Color(204, 204, 255));
         btnEliminarDocumento.setText("Eliminar Documento");
         btnEliminarDocumento.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEliminarDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarDocumentoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEliminarDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 180, -1));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 320, 0));
 
-        txtEstadoDocumento1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtEstadoDocumento1.setText("Nombre del congreso");
-        txtEstadoDocumento1.addActionListener(new java.awt.event.ActionListener() {
+        congreso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        congreso.setText("Nombre del congreso");
+        congreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEstadoDocumento1ActionPerformed(evt);
+                congresoActionPerformed(evt);
             }
         });
-        getContentPane().add(txtEstadoDocumento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 210, -1));
+        getContentPane().add(congreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 210, -1));
 
-        primerRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
+        primerRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "si", "no" }));
         primerRegistro.setToolTipText("Primer registro?");
         primerRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,9 +245,9 @@ public class GestorDocumentos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCrearDocumentoMouseClicked
 
-    private void txtEstadoDocumento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoDocumento1ActionPerformed
+    private void congresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_congresoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEstadoDocumento1ActionPerformed
+    }//GEN-LAST:event_congresoActionPerformed
 
     private void primerRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_primerRegistroActionPerformed
         // TODO add your handling code here:
@@ -232,30 +263,79 @@ public class GestorDocumentos extends javax.swing.JFrame {
           String fechaPublicacion= txtFechaPublicacion.getText();
           String autor = Autor.getText();
           String editorial = txtEditorial.getText();
-          if(PrimerRegistro.equals("Si")){
+          if(PrimerRegistro.equals("si")){
               
               PrimerRegistro primer = new PrimerRegistro(usuario, titulo, usuario);
-              Libro libro = new Libro(titulo, fechaPublicacion, autor, editorial, primer,paginas);
-              facade.addArchivo(libro);
+              Archivo archivo= regislibro.crearArchivo(titulo, fechaPublicacion, autor, editorial, true, true, primer, autor);
+              regislibro.configPaginas(paginas, (Libro) archivo);
+              facade.addArchivo(archivo);
               facade.addPrimerRegistro(primer);
               
           }else{
-              PrimerRegistro primer = new PrimerRegistro(usuario, titulo, usuario);
-              
-              Libro libro = new Libro(titulo, fechaPublicacion, autor, editorial, primer,paginas);
-              facade.addArchivo(libro);
-              facade.addRegistro(primer);
+               Registro registro = new Registro(titulo, usuario);
+              Archivo archivo= regislibro.crearArchivo(titulo, fechaPublicacion, autor, editorial, true, true, (PrimerRegistro) registro, autor);
+              regislibro.configPaginas(paginas, (Libro) archivo);
+              facade.addArchivo(archivo);
+              facade.addRegistro(registro);         
           }
-      }
+      }else if(tipo.equals("ponencia")){
+          String Congreso = congreso.getText();
+          String titulo= txtTitulo.getText();
+          String fechaPublicacion= txtFechaPublicacion.getText();
+          String autor = Autor.getText();
+          String editorial = txtEditorial.getText();
           
+          if(PrimerRegistro.equals("si")){
+              
+              PrimerRegistro primer = new PrimerRegistro(usuario, titulo, usuario);
+              Archivo archivo= regispon.crearArchivo(titulo, fechaPublicacion, autor, editorial, true, true, primer, autor);
+              regispon.configCongreso(Congreso, (Ponencia) archivo);
+              facade.addArchivo(archivo);
+              facade.addPrimerRegistro(primer);
+              
+          }else{
+                Registro registro = new Registro(titulo, usuario);
+              Archivo archivo= regispon.crearArchivo(titulo, fechaPublicacion, autor, editorial, true, true, (PrimerRegistro) registro, autor);
+              regispon.configCongreso(Congreso, (Ponencia) archivo);
+              facade.addArchivo(archivo);
+              facade.addRegistro(registro);         
+          }
+      }else if(tipo.equals("articulo cientifico")){
+          String SSN = txtISBNSNN.getText();
+          String titulo= txtTitulo.getText();
+          String fechaPublicacion= txtFechaPublicacion.getText();
+          String autor = Autor.getText();
+          String editorial = txtEditorial.getText();
+          
+          if(PrimerRegistro.equals("si")){
+              
+              PrimerRegistro primer = new PrimerRegistro(usuario, titulo, usuario);
+              SSNAdapter adapter = new SSNAdapter(SSN, titulo, fechaPublicacion, autor, editorial, primer);
+              Archivo archivo= regisart.crearArchivo(titulo, fechaPublicacion, autor, editorial, true, true, primer, autor);
+              regisart.configSSN(SSN, adapter);
+             
+              regisart.configSSN(SSN, adapter);
+              facade.addArchivo(archivo);
+              facade.addPrimerRegistro(primer);
+              
+          }else{
+              Registro registro = new Registro(titulo, usuario);
+              SSNAdapter adapter = new SSNAdapter(SSN, titulo, fechaPublicacion, autor, editorial, (PrimerRegistro) registro);
+              Archivo archivo= regisart.crearArchivo(titulo, fechaPublicacion, autor, editorial, true, true, (PrimerRegistro) registro, autor);
+              regisart.configSSN(SSN, adapter);
+              facade.addArchivo(archivo);
+              facade.addRegistro(registro);   
+      }
+      }
       }catch (Exception e) {
             // Muestra el error en una ventana emergente
             JOptionPane.showMessageDialog(null, "Se produjo un error: " + e.getMessage(), "No se pudo registrar el archivo", JOptionPane.ERROR_MESSAGE);
         }finally {
             // Este bloque siempre se ejecuta
             
-        }
-    
+        
+      
+      }
     }//GEN-LAST:event_btnCrearDocumentoActionPerformed
 
     private void AutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutorActionPerformed
@@ -265,6 +345,88 @@ public class GestorDocumentos extends javax.swing.JFrame {
     private void txtFechaPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaPublicacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaPublicacionActionPerformed
+
+    private void btnModificarDocumentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarDocumentoMouseClicked
+        
+    }//GEN-LAST:event_btnModificarDocumentoMouseClicked
+
+    private void btnModificarDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarDocumentoActionPerformed
+    String PrimerRegistro = primerRegistro.getSelectedItem().toString();
+    String titulo= txtTitulo.getText();
+    String tipo = comboboxDocumentos.getSelectedItem().toString();
+    
+      try{
+      if(tipo.equals("libro")){
+          int paginas = Integer.valueOf(txtTotalPaginas.getText());
+          String fechaPublicacion= txtFechaPublicacion.getText();
+          String autor = Autor.getText();
+          String editorial = txtEditorial.getText();
+          String titulolibro= titulo;
+          PrimerRegistro primer = new PrimerRegistro(usuario, titulolibro, usuario);
+          Archivo archivo= regislibro.crearArchivo(titulolibro, fechaPublicacion, autor, editorial, true, true, primer , autor);
+          regislibro.configPaginas(paginas, (Libro) archivo);
+          facade.updateArchivo(archivo);
+          facade.updateRegistro(primer);
+          }else if(tipo.equals("ponencia")){
+              String Congreso = congreso.getText();
+              String fechaPublicacion= txtFechaPublicacion.getText();
+              String autor = Autor.getText();
+              String editorial = txtEditorial.getText();
+              String tituloponencia= titulo;
+          
+          
+            Registro registro = new Registro(tituloponencia, usuario);
+           Archivo archivo= regispon.crearArchivo(tituloponencia, fechaPublicacion, autor, editorial, true, true, (PrimerRegistro) registro, autor);
+           regispon.configCongreso(Congreso, (Ponencia) archivo);
+           facade.updateArchivo(archivo);
+           facade.updateRegistro(registro);
+          
+      }else if(tipo.equals("articulo cientifico")){
+          String SSN = txtISBNSNN.getText();
+          String fechaPublicacion= txtFechaPublicacion.getText();
+          String autor = Autor.getText();
+          String editorial = txtEditorial.getText();
+          String tituloarticulo= titulo;
+          
+              Registro registro = new Registro(tituloarticulo, usuario);
+              SSNAdapter adapter = new SSNAdapter(SSN, tituloarticulo, fechaPublicacion, autor, editorial, (PrimerRegistro) registro);
+              Archivo archivo= regisart.crearArchivo(tituloarticulo, fechaPublicacion, autor, editorial, true, true, (PrimerRegistro) registro, autor);
+              regisart.configSSN(SSN, adapter);
+              facade.updateArchivo(archivo);
+              facade.updateRegistro(registro);  
+      
+      }
+      }catch (Exception e) {
+            // Muestra el error en una ventana emergente
+            JOptionPane.showMessageDialog(null, "Se produjo un error: " + e.getMessage(), "No se pudo registrar el archivo", JOptionPane.ERROR_MESSAGE);
+        }finally {
+            // Este bloque siempre se ejecuta
+            
+        
+      
+      }
+    
+    
+    
+    }//GEN-LAST:event_btnModificarDocumentoActionPerformed
+
+    private void btnEliminarDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDocumentoActionPerformed
+        String PrimerRegistro = primerRegistro.getSelectedItem().toString();
+    String titulo= txtTitulo.getText();
+    String tipo = comboboxDocumentos.getSelectedItem().toString();
+    
+      try{
+      facade.deleteArchivo(titulo);
+      }catch (Exception e) {
+            // Muestra el error en una ventana emergente
+            JOptionPane.showMessageDialog(null, "Se produjo un error: " + e.getMessage(), "No se pudo registrar el archivo", JOptionPane.ERROR_MESSAGE);
+        }finally {
+            // Este bloque siempre se ejecuta
+            
+        
+      
+      }
+    }//GEN-LAST:event_btnEliminarDocumentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,10 +445,10 @@ public class GestorDocumentos extends javax.swing.JFrame {
     public javax.swing.JButton btnModificarDocumento;
     public javax.swing.JButton btnReservarDocumento;
     public javax.swing.JComboBox<String> comboboxDocumentos;
+    public javax.swing.JTextField congreso;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> primerRegistro;
     public javax.swing.JTextField txtEditorial;
-    public javax.swing.JTextField txtEstadoDocumento1;
     public javax.swing.JTextField txtFechaPublicacion;
     public javax.swing.JTextField txtISBNSNN;
     public javax.swing.JTextField txtTitulo;

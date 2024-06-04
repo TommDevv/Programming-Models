@@ -98,12 +98,16 @@ public class ArchivoDAOImpl implements ArchivoDAO {
         if (tipo.equals("Libro")) {
             propiedades.setProperty("tipo" + iter, "libro");
             propiedades.setProperty("paginas" + iter, String.valueOf(new RegistradoraLibro().obtenerPaginas((Libro) arc)));
+            System.out.print("libro insertado");
         } else if (tipo.equals("Ponencia")) {
             propiedades.setProperty("tipo" + iter, "ponencia");
             propiedades.setProperty("congreso" + iter, new RegistradoraPonencia().obtenerCongreso((Ponencia) arc));
+            System.out.print("ponencia insertado");
         } else if (tipo.equals("SSNAdapter")) {
             propiedades.setProperty("tipo" + iter, "articulo");
+            System.out.print("articulo insertado");
         }
+        
     }
 
     @Override
