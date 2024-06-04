@@ -3,6 +3,7 @@ import Model.Usuario;
 import java.util.List;
 
 public interface UsuarioDAO {
+    
     void addUsuario(Usuario usuario);
     Usuario getUsuario(int id);
     Usuario getUsuarioByUsername(String username);
