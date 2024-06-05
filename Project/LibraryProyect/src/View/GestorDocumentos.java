@@ -59,7 +59,6 @@ public class GestorDocumentos extends javax.swing.JFrame {
         txtFechaPublicacion = new javax.swing.JTextField();
         txtISBNSNN = new javax.swing.JTextField();
         txtTitulo = new javax.swing.JTextField();
-        btnConsultarTablaMods = new javax.swing.JButton();
         comboboxDocumentos = new javax.swing.JComboBox<>();
         btnCerrarSesion = new javax.swing.JButton();
         btnDevolverDocumento = new javax.swing.JButton();
@@ -121,11 +120,6 @@ public class GestorDocumentos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 210, -1));
-
-        btnConsultarTablaMods.setBackground(new java.awt.Color(204, 204, 255));
-        btnConsultarTablaMods.setText("Consultar Modificaciones");
-        btnConsultarTablaMods.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(btnConsultarTablaMods, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 180, -1));
 
         comboboxDocumentos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "libro", "ponencia", "articulo cientifico" }));
         getContentPane().add(comboboxDocumentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 210, -1));
@@ -412,7 +406,6 @@ public class GestorDocumentos extends javax.swing.JFrame {
     public javax.swing.JLabel LabelFondo;
     public javax.swing.JButton btnCerrarSesion;
     public javax.swing.JButton btnConsultarDoc;
-    public javax.swing.JButton btnConsultarTablaMods;
     public javax.swing.JButton btnCrearDocumento;
     public javax.swing.JButton btnDevolverDocumento;
     public javax.swing.JButton btnModificarDocumento;
